@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## 1. 基本方針
+- Discordは会話・進捗共有の場
+- Webはタスク管理・進捗入力確認の場
+→ 情報が流れず、整理された状態で管理できる。
 
-## Getting Started
+## 2. Webタスク管理の利用イメージ
 
-First, run the development server:
+- タスク登録：誰が・何を・いつまでに行うかを記録
+(詳細入力や資料先のリンク等も入力できるように)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- 進捗ステータス：
+未着手
+進行中
+レビュー待ち
+完了
+の4つのステータス
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 担当者アサイン：Discordと連携させる
+- 期限・優先度設定：開発の遅延を防ぐ
+- 通知：できれば手動で管理者権限を持つアカウントが必要時に相手へプッシュ通知を送れるようにする。(手動にしたのは不要な通知の送信を避けるため)
+- PWA化でプッシュ通知送信
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 3.その他機能について
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 開発者別のアカウントを登録できるようにする
+- 個別に権限を柔軟に管理できるようにする(タスク管理権限、アカウントの追加、削除権限、などなど...)
+- タスク期限による自動リマインド機能
+- すべてのタスクの表示ページと自身に割り当てられたタスクの一覧表示ページ
