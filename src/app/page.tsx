@@ -1,23 +1,28 @@
-import { AppLayout } from '@/components/layout/AppLayout';
-import { TaskSummary } from '@/components/dashboard/TaskSummary';
-import { RecentTasks } from '@/components/dashboard/RecentTasks';
-import { Container, Typography, Box } from '@mui/material';
+'use client'
+
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import { useAuth } from '@/contexts/AuthContext'
 
 export default function Home() {
+  const { isAuthenticated, loading } = useAuth()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!loading) {
+      // Always redirect based on authentication status
+      const targetPath = isAuthenticated ? '/dashboard' : '/auth'
+      router.replace(targetPath)
+    }
+  }, [isAuthenticated, loading, router])
+
+  // Show loading while determining where to redirect
   return (
-    <AppLayout>
-      <Container maxWidth="lg">
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="h4" gutterBottom>
-            ダッシュボード
-          </Typography>
-          <Typography variant="body1" color="text.secondary">
-            タスクの進捗状況を確認しましょう
-          </Typography>
-        </Box>
-        <TaskSummary />
-        <RecentTasks />
-      </Container>
-    </AppLayout>
-  );
+    <div className="min-h-screen flex items-center justify-center bg-gray-50" suppressHydrationWarning>
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto mb-4"></div>
+        <p className="text-gray-600">読み込み中...</p>
+      </div>
+    </div>
+  )
 }
